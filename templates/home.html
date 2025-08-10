@@ -1,0 +1,212 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>RentIT | Home</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <a href="{% url 'home' %}">
+          <img src="{% static 'images/logo.png' %}" alt="RentIT logo" class="logo">
+        </a>
+      </div>
+
+      <form class="search-form" action="#" method="get">
+        <select name="category" class="cat-select" aria-label="Select category">
+          <option value="">All categories</option>
+          <option value="electronics">Electronics</option>
+          <option value="furniture">Furniture</option>
+          <option value="vehicles">Vehicles</option>
+          <option value="tools">Tools</option>
+        </select>
+        <input type="search" name="q" placeholder="Search items to rent..." aria-label="Search">
+        <button type="submit" class="search-btn">Search</button>
+      </form>
+
+      <nav class="main-nav" aria-label="Main Navigation">
+        <ul>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Chat</a></li>
+          <li><a href="#">Community</a></li>
+          <li>
+            {% if user.is_authenticated %}
+              <a href="{% url 'profile' %}">Account</a>
+              <a href="{% url 'logout' %}" class="auth-link">Logout</a>
+            {% else %}
+              <a href="{% url 'login' %}" class="auth-link">Log in | Sign up</a>
+            {% endif %}
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-main">
+    <!-- HERO / Featured -->
+    <section class="hero">
+      <div class="hero-grid">
+        <article class="hero-large card-img">
+          <img src="{% static 'images/hero-left.jpg' %}" alt="Feature item">
+          <div class="img-overlay">
+            <span class="tag">Most Popular</span>
+            <h2>High-end Camera</h2>
+            <a class="btn rent-now" href="#">Rent now</a>
+          </div>
+        </article>
+
+        <div class="hero-right">
+          <article class="hero-small card-img">
+            <img src="{% static 'images/hero-top-right.jpg' %}" alt="Item">
+            <div class="img-overlay small">
+              <h3>Mountain Bike</h3>
+            </div>
+          </article>
+
+          <article class="hero-small card-img">
+            <img src="{% static 'images/hero-bottom-right.jpg' %}" alt="Item">
+            <div class="img-overlay small">
+              <h3>Drill Set</h3>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories">
+      <h2>Browse by Category</h2>
+      <div class="cat-grid">
+        <a class="cat-card" href="#">
+          <img src="{% static 'images/icons/electronics.svg' %}" alt="">
+          <span>Electronics</span>
+        </a>
+        <a class="cat-card" href="#">
+          <img src="{% static 'images/icons/furniture.svg' %}" alt="">
+          <span>Furniture</span>
+        </a>
+        <a class="cat-card" href="#">
+          <img src="{% static 'images/icons/vehicles.svg' %}" alt="">
+          <span>Vehicles</span>
+        </a>
+        <a class="cat-card" href="#">
+          <img src="{% static 'images/icons/tools.svg' %}" alt="">
+          <span>Tools</span>
+        </a>
+        <a class="cat-card" href="#">
+          <img src="{% static 'images/icons/camera.svg' %}" alt="">
+          <span>Cameras</span>
+        </a>
+        <a class="cat-card" href="#">
+          <img src="{% static 'images/icons/sports.svg' %}" alt="">
+          <span>Sports</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Trending products -->
+    <section class="trending">
+      <h2>Trending Products</h2>
+      <div class="horizontal-scroll">
+        <!-- Example card -->
+        <article class="product-card">
+          <img src="{% static 'images/products/p1.jpg' %}" alt="Product 1">
+          <div class="product-body">
+            <h3>GoPro Hero</h3>
+            <p class="price">৳ 600 / day</p>
+            <a class="btn small" href="#">Rent</a>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <img src="{% static 'images/products/p2.jpg' %}" alt="Product 2">
+          <div class="product-body">
+            <h3>Projector</h3>
+            <p class="price">৳ 750 / day</p>
+            <a class="btn small" href="#">Rent</a>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <img src="{% static 'images/products/p3.jpg' %}" alt="Product 3">
+          <div class="product-body">
+            <h3>Electric Scooter</h3>
+            <p class="price">৳ 1200 / day</p>
+            <a class="btn small" href="#">Rent</a>
+          </div>
+        </article>
+
+        <!-- Add more product cards as needed -->
+      </div>
+    </section>
+
+    <!-- Most popular (grid) -->
+    <section class="popular">
+      <h2>Most Popular</h2>
+      <div class="popular-grid">
+        <article class="pop-card">
+          <img src="{% static 'images/products/pop1.jpg' %}" alt="Popular 1">
+          <div class="pop-info">
+            <h3>DSLR Camera</h3>
+            <p>৳ 900 / day</p>
+            <a class="btn" href="#">Rent Now</a>
+          </div>
+        </article>
+
+        <article class="pop-card">
+          <img src="{% static 'images/products/pop2.jpg' %}" alt="Popular 2">
+          <div class="pop-info">
+            <h3>Sound System</h3>
+            <p>৳ 1400 / day</p>
+            <a class="btn" href="#">Rent Now</a>
+          </div>
+        </article>
+
+        <article class="pop-card">
+          <img src="{% static 'images/products/pop3.jpg' %}" alt="Popular 3">
+          <div class="pop-info">
+            <h3>Coffee Machine</h3>
+            <p>৳ 500 / day</p>
+            <a class="btn" href="#">Rent Now</a>
+          </div>
+        </article>
+
+        <article class="pop-card">
+          <img src="{% static 'images/products/pop4.jpg' %}" alt="Popular 4">
+          <div class="pop-info">
+            <h3>Camping Tent</h3>
+            <p>৳ 650 / day</p>
+            <a class="btn" href="#">Rent Now</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Our details -->
+    <section class="details">
+      <div class="details-inner">
+        <div class="about">
+          <h2>About RentIT</h2>
+          <p>RentIT connects people who need items for short-term use with owners who want to rent them out. Secure payments, trusted reviews, and friendly support.</p>
+        </div>
+        <div class="contact">
+          <h3>Contact</h3>
+          <p>Email: support@rentit.example</p>
+          <p>Phone: +880 1X XXX XXXX</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p>© {{ now.year }} RentIT — All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

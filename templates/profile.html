@@ -1,0 +1,127 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>RentIT | User Profile</title>
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+</head>
+<body>
+
+<nav class="top-nav">
+    <div class="nav-inner">
+      <a class="brand" href="{% url 'home' %}">RentIT</a>
+      <div class="nav-links">
+        {% if user.is_authenticated %}
+          <a href="{% url 'logout' %}" class="btn btn-ghost">Logout</a>
+        {% endif %}
+      </div>
+    </div>
+</nav>
+
+<main class="container">
+    <section class="profile-card">
+        
+        <form action="{% url 'profile' %}" method="post" enctype="multipart/form-data" class="profile-form">
+            {% csrf_token %}
+
+            <div class="left">
+                <div class="profile-image-wrapper">
+                    <label for="img" class="image-label" title="Click to change">
+                        {% if profile.image %}
+                          <img id="profilePreview" class="profile-image" src="{{ profile.image.url }}" alt="{{ user.username }}">
+                        {% else %}
+                          <img id="profilePreview" class="profile-image" src="{% static 'images/default-avatar.png' %}" alt="avatar">
+                        {% endif %}
+                        <div class="camera-tip">Change</div>
+                    </label>
+
+                  
+                    <input type="file" id="img" name="img" accept="image/*" class="file-input">
+                    <p class="small muted">Click image to upload a new profile picture</p>
+
+                    
+                    <div class="quick-info">
+                        <p class="username">{{ user.username }}</p>
+                        <p class="email">{{ user.email }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right">
+                <div class="field-group">
+                    <label for="name">Name</label>
+                    <input id="name" name="name" type="text" value="{{ profile.name }}" placeholder="Your full name">
+                </div>
+
+                <div class="field-group">
+                    <label for="phone">Number</label>
+                    <input id="phone" name="phone" type="text" value="{{ profile.phone|default_if_none:'' }}" placeholder="+8801XXXXXXXXX">
+                    {% if errors.phone_error %}
+                      <div class="error">{{ errors.phone_error }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="field-row">
+                    <div class="field-group">
+                        <label for="birthday">Birthday</label>
+                        <input id="birthday" name="birthday" type="date" value="{{ profile.birthday|date:'Y-m-d' }}">
+                    </div>
+
+                    <div class="field-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender" name="gender">
+                            <option value="">Choose</option>
+                            <option value="Male" {% if profile.gender == 'Male' %}selected{% endif %}>Male</option>
+                            <option value="Female" {% if profile.gender == 'Female' %}selected{% endif %}>Female</option>
+                            <option value="Other" {% if profile.gender == 'Other' %}selected{% endif %}>Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label for="location">Location</label>
+                    <input id="location" name="location" type="text" value="{{ profile.location|default:'' }}" placeholder="Area, City, Division, Country">
+                </div>
+
+                <div class="field-group">
+                    <label for="bio">Bio</label>
+                    <textarea id="bio" name="bio" rows="4" placeholder="Tell  about yourself...">{{ profile.bio }}</textarea>
+                </div>
+
+
+                <div class="actions">
+                    <button type="submit" class="btn btn-primary">Save Profile</button>
+
+                    <a href="{% url 'delete_profile' %}" class="btn btn-danger warn">Delete Profile</a>
+
+                    <a class="change-password small-link" href="{% url 'password_change' %}">Change Password</a>
+                </div>
+            </div>
+        </form>
+    </section>
+</main>
+
+<script>
+  
+  const fileInput = document.getElementById('img');
+  const preview = document.getElementById('profilePreview');
+
+  fileInput.addEventListener('change', function (e) {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function (ev) {
+      preview.src = ev.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+
+  document.querySelector('.image-label').addEventListener('keydown', function(e){
+    if(e.key === 'Enter' || e.key === ' ') document.getElementById('img').click();
+  });
+</script>
+
+</body>
+</html>
