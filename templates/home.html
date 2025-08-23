@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>RentIT | Home</title>
@@ -12,7 +13,7 @@
     <div class="header-inner">
       <div class="brand">
         <a href="{% url 'home' %}">
-          <img src="{% static 'images/logo.png' %}" alt="RentIT logo" class="logo">
+          <img src="{% static 'Logos/RentIT.png' %}" alt="RentIT logo" class="logo">
         </a>
       </div>
 
@@ -23,6 +24,7 @@
           <option value="furniture">Furniture</option>
           <option value="vehicles">Vehicles</option>
           <option value="tools">Tools</option>
+          <option value="dress">Dress</option>
         </select>
         <input type="search" name="q" placeholder="Search items to rent..." aria-label="Search">
         <button type="submit" class="search-btn">Search</button>
@@ -31,16 +33,18 @@
       <nav class="main-nav" aria-label="Main Navigation">
         <ul>
           <li><a href="{% url 'home' %}">Home</a></li>
-          <li><a href="#">Services</a></li>
+          <li><a href="#">Category</a></li>
           <li><a href="#">Chat</a></li>
           <li><a href="#">Community</a></li>
           <li>
             {% if user.is_authenticated %}
-              <a href="{% url 'profile' %}">Account</a>
-              <a href="{% url 'logout' %}" class="auth-link">Logout</a>
+              <li><a href="#">Profile</a></li>
+              <li><a href="{% url 'profile' %}">Account</a></li>
+              <li><a href="{% url 'logout' %}" class="auth-link">Logout</a></li>
             {% else %}
-              <a href="{% url 'login' %}" class="auth-link">Log in | Sign up</a>
+              <li><a href="{% url 'login' %}" class="auth-link">Log in | Sign up</a></li>
             {% endif %}
+
           </li>
         </ul>
       </nav>
@@ -52,26 +56,26 @@
     <section class="hero">
       <div class="hero-grid">
         <article class="hero-large card-img">
-          <img src="{% static 'images/hero-left.jpg' %}" alt="Feature item">
+          <img src="{% static 'images/3d.jpg' %}" alt="Feature item">
           <div class="img-overlay">
             <span class="tag">Most Popular</span>
-            <h2>High-end Camera</h2>
+            <h2>3D printer</h2>
             <a class="btn rent-now" href="#">Rent now</a>
           </div>
         </article>
 
         <div class="hero-right">
           <article class="hero-small card-img">
-            <img src="{% static 'images/hero-top-right.jpg' %}" alt="Item">
+            <img src="{% static 'images/car.jpg' %}" alt="Item">
             <div class="img-overlay small">
-              <h3>Mountain Bike</h3>
+              <h3>car</h3>
             </div>
           </article>
 
           <article class="hero-small card-img">
-            <img src="{% static 'images/hero-bottom-right.jpg' %}" alt="Item">
+            <img src="{% static 'images/Ps5.jpg' %}" alt="Item">
             <div class="img-overlay small">
-              <h3>Drill Set</h3>
+              <h3>PS5</h3>
             </div>
           </article>
         </div>
@@ -83,28 +87,32 @@
       <h2>Browse by Category</h2>
       <div class="cat-grid">
         <a class="cat-card" href="#">
-          <img src="{% static 'images/icons/electronics.svg' %}" alt="">
+          <img src="{% static 'Logos/electronics.png' %}" alt="">
           <span>Electronics</span>
         </a>
         <a class="cat-card" href="#">
-          <img src="{% static 'images/icons/furniture.svg' %}" alt="">
+          <img src="{% static 'Logos/furniture.png' %}" alt="">
           <span>Furniture</span>
         </a>
         <a class="cat-card" href="#">
-          <img src="{% static 'images/icons/vehicles.svg' %}" alt="">
+          <img src="{% static 'Logos/vehicles.png' %}" alt="">
           <span>Vehicles</span>
         </a>
         <a class="cat-card" href="#">
-          <img src="{% static 'images/icons/tools.svg' %}" alt="">
+          <img src="{% static 'Logos/tools.png' %}" alt="">
           <span>Tools</span>
         </a>
         <a class="cat-card" href="#">
-          <img src="{% static 'images/icons/camera.svg' %}" alt="">
+          <img src="{% static 'Logos/camera.png' %}" alt="">
           <span>Cameras</span>
         </a>
         <a class="cat-card" href="#">
-          <img src="{% static 'images/icons/sports.svg' %}" alt="">
+          <img src="{% static 'Logos/sports.png' %}" alt="">
           <span>Sports</span>
+        </a>
+        <a class="cat-card" href="#">
+          <img src="{% static 'Logos/dress.png' %}" alt="">
+          <span>Dress</span>
         </a>
       </div>
     </section>
@@ -115,7 +123,7 @@
       <div class="horizontal-scroll">
         <!-- Example card -->
         <article class="product-card">
-          <img src="{% static 'images/products/p1.jpg' %}" alt="Product 1">
+          <img src="{% static 'images/gopro.jpeg' %}" alt="Product 1">
           <div class="product-body">
             <h3>GoPro Hero</h3>
             <p class="price">৳ 600 / day</p>
@@ -124,7 +132,7 @@
         </article>
 
         <article class="product-card">
-          <img src="{% static 'images/products/p2.jpg' %}" alt="Product 2">
+          <img src="{% static 'images/projector.jpg' %}" alt="Product 2">
           <div class="product-body">
             <h3>Projector</h3>
             <p class="price">৳ 750 / day</p>
@@ -133,7 +141,7 @@
         </article>
 
         <article class="product-card">
-          <img src="{% static 'images/products/p3.jpg' %}" alt="Product 3">
+          <img src="{% static 'images/scooter.jpg' %}" alt="Product 3">
           <div class="product-body">
             <h3>Electric Scooter</h3>
             <p class="price">৳ 1200 / day</p>
@@ -150,7 +158,7 @@
       <h2>Most Popular</h2>
       <div class="popular-grid">
         <article class="pop-card">
-          <img src="{% static 'images/products/pop1.jpg' %}" alt="Popular 1">
+          <img src="{% static 'images/camera.jpg' %}" alt="Popular 1">
           <div class="pop-info">
             <h3>DSLR Camera</h3>
             <p>৳ 900 / day</p>
@@ -159,7 +167,7 @@
         </article>
 
         <article class="pop-card">
-          <img src="{% static 'images/products/pop2.jpg' %}" alt="Popular 2">
+          <img src="{% static 'images/sound.jpg' %}" alt="Popular 2">
           <div class="pop-info">
             <h3>Sound System</h3>
             <p>৳ 1400 / day</p>
@@ -168,7 +176,7 @@
         </article>
 
         <article class="pop-card">
-          <img src="{% static 'images/products/pop3.jpg' %}" alt="Popular 3">
+          <img src="{% static 'images/coffee.jpg' %}" alt="Popular 3">
           <div class="pop-info">
             <h3>Coffee Machine</h3>
             <p>৳ 500 / day</p>
@@ -177,7 +185,7 @@
         </article>
 
         <article class="pop-card">
-          <img src="{% static 'images/products/pop4.jpg' %}" alt="Popular 4">
+          <img src="{% static 'images/tent.jpeg' %}" alt="Popular 4">
           <div class="pop-info">
             <h3>Camping Tent</h3>
             <p>৳ 650 / day</p>
